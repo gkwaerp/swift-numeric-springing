@@ -7,22 +7,23 @@ Allows easy creation of spring animations, in cases where e.g. `UIView.animate` 
 ### Swift Package Manager
 With your project opened in Xcode, follow these steps to add the Numeric Springing framework to your project:
 1. Select your project.
-2. Click 'Swift Packages'.
-3. Click the Add button.
+2. Click `Swift Packages`.
+3. Click the Add button (`+` symbol).
 4. Enter the following repository URL: `https://github.com/LactoseGK/swift-numeric-springing`.
-5. Click 'Next'.
+5. Click `Next`.
 6. Select your preferred import/version rules. Unless you have specific reasons not to, I recommend using the default settings.
-7. Click 'Next'.
+7. Click `Next`.
 8. Ensure the Package `NumericSpringing` is selected, and that the correct target is selected.
-9. Click 'Finish'.
+9. Click `Finish`.
 
 You will need to include `import NumericSpringing` in the source files which use the Numeric Springing framework.
 
 ## How to use
 ### Code Examples
 Code goes here.
+
 ### Example Repository
-Link goes here.
+A sample project showcasing some animations which can be made using this framework can be found here: Link goes here.
 
 ## Supported types
 The Numeric Springing framework works by making a type conform to the `Springable` protocol. A `Spring` operates on `Springable` objects. Internally, the Numeric Spring framework does math using `Double`.

@@ -13,7 +13,7 @@ extension Double: Springable {
     }
     
     public static func from(values: [Double]) -> Double {
-        guard values.count == 1 else { fatalError("Attemping to create 1 Double from \(values.count) values.") }
-        return values.first!
+        guard values.count == 1 else { fatalError("Attemping to create 1x Double from \(values.count) values.") }
+        return values[0]
     }
 }

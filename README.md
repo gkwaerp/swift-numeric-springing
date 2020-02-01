@@ -36,8 +36,7 @@ The following types are already supported in the Numeric Springing framework:
 * CGPoint.
 
 ### Adding support for new types
-To add support for a new type, make the type conform to the `Springable`protocol. The `Springable` protocol has 2 required properties which must be provided:
-
+To add support for a new type, make the type conform to the `Springable`protocol. The `Springable` protocol has 2 requirements:
 * `public var values: [Double]` -- Convert an object of the required type into an array of Doubles, for use internally in the Numeric Spring framework.
 
 * `public static func from(values: [Double]) -> T` -- Given an array of Doubles, create an object of the required type.

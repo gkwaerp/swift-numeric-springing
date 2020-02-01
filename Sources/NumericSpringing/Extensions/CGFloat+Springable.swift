@@ -14,12 +14,8 @@ extension CGFloat: Springable {
     }
 
     public static func from(values: [Double]) -> CGFloat {
-        guard values.count == numValuesNeededForInitialization else { fatalError("Attemping to create 1 CGFloat from \(values.count) values.") }
+        guard values.count == 1 else { fatalError("Attemping to create 1 CGFloat from \(values.count) values.") }
         return CGFloat(values.first!)
-    }
-
-    public static var numValuesNeededForInitialization: Int {
-        return 1
     }
 }
 

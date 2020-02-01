@@ -14,12 +14,8 @@ extension CGPoint: Springable {
     }
     
     public static func from(values: [Double]) -> CGPoint {
-        guard values.count == numValuesNeededForInitialization else { fatalError("Attemping to create 1 CGPoint from \(values.count) values.")}
+        guard values.count == 2 else { fatalError("Attemping to create 1 CGPoint from \(values.count) values.")}
         return CGPoint(x: values[0], y: values[1])
-    }
-
-    public static var numValuesNeededForInitialization: Int {
-        return 2
     }
 }
 #endif

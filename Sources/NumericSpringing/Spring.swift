@@ -43,6 +43,7 @@ public class Spring<T: Springable> {
     private let h: Double
 
     // MARK: Closures & updating
+    // TODO: CADisplayLink instead of Timer?
     private var springType: SpringType
     private var timer: Timer?
     private var animationClosure: SpringAnimationBlock

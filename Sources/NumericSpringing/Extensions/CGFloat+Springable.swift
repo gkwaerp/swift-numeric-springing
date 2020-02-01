@@ -5,7 +5,8 @@
 //  Created by Geir-Kåre S. Wærp on 01/02/2020.
 //
 
-import Foundation
+#if canImport(UIKit)
+import UIKit
 
 extension CGFloat: Springable {
     public var values: [Double] {
@@ -21,3 +22,5 @@ extension CGFloat: Springable {
         return 1
     }
 }
+
+#endif

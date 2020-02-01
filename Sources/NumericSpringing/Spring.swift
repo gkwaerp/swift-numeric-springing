@@ -6,6 +6,11 @@
 //
 import Foundation
 
+// Based on the blogs posts on Numeric Springing by Ming-Lun "Allen" Chou | 周明倫:
+// * http://allenchou.net/2015/04/game-math-precise-control-over-numeric-springing/
+// * http://allenchou.net/2015/04/game-math-numeric-springing-examples/
+// * http://allenchou.net/2015/04/game-math-more-on-numeric-springing/
+
 // Simulates a dampened spring system.
 @available(OSX 10.12, *)
 public class Spring<T: Springable> {

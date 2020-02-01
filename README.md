@@ -1,5 +1,5 @@
 # Numeric Springing in Swift
-A framework for numeric springing in Swift, written in **Swift 5.1**.
+A framework for numeric springing in Swift, written in **Swift 5**.
 
 Allows easy creation of spring animations, in cases where e.g. `UIView.animate` isn't a viable option.
 

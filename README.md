@@ -52,7 +52,7 @@ self.rotateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action
     self.rotateSpring?.updateTargetValue(self.rotationValue)
 }
 ```
-Tapping `rotateView` will now cause it to rotate with a spring. Note also that the target value can be updated at any time, and will dynamically feed the animation closure with the correct animation values.
+Tapping `rotateView` will now cause it to rotate with a spring. Note also that the target value can be updated at any time, and the spring will dynamically feed the animation closure with the correct animation values.
 
 
 In addition to `createBasicSpring`, there is also factory method called `createCustomSpring` -- this allows you to tweak the various parameters to get the desired effect.

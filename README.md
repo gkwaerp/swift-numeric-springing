@@ -19,8 +19,44 @@ With your project opened in Xcode, follow these steps to add the Numeric Springi
 You will need to include `import NumericSpringing` in the source files which use the Numeric Springing framework.
 
 ## How to use
-### Code Examples
-Code goes here.
+To use a spring, you will generally need to store it in a variable, in order to update its target values.
+### Code Example -- toggling rotation of a view
+For this, we need a view to rotate, as well as 2 other variables -- one for the spring, and one to keep track of which rotation value we're wanting.
+```
+private var rotateView: UIView!
+private var rotateSpring: Spring<CGFloat>?
+private var rotateToggled = false
+```
+
+For convenience, we'll have a variable that gives us our target rotation value:
+```
+private var rotationValue: CGFloat {
+    return self.rotateToggled ? CGFloat.pi / 2 : 0
+}
+```
+
+Next, we create the spring. This is also where we have our animation closure. Remember to consider retain cycles here, and apply `[weak self]` as appropriate:
+```
+self.rotateSpring = .createBasicSpring(startValue: self.rotationValue, animationClosure: { [weak self] (animationValue) in
+    self?.rotateView.transform = CGAffineTransform(rotationAngle: animationValue)
+})
+```
+Note that creating a spring does not make it animate automatically. To start the animation, either call `startSpringAnimation()`, or `updateTargetValue` with the `startIfPaused` flag set to `true` (default = `true`).
+
+Finally, we add a gesture recognizer to allow us to tap our `rotateView`.
+```
+self.rotateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(rotateViewTapped)))
+// ...
+@objc func rotateViewTapped() {
+    self.rotateToggled.toggle()
+    self.rotateSpring?.updateTargetValue(self.rotationValue)
+}
+```
+Tapping `rotateView` will now cause it to rotate with a spring. Note also that the target value can be updated at any time, and will dynamically feed the animation closure with the correct animation values.
+
+
+In addition to `createBasicSpring`, there is also factory method called `createCustomSpring` -- this allows you to tweak the various parameters to get the desired effect.
+
 
 ### Example Repository
 A sample project showcasing some animations which can be made using this framework can be found here: Link goes here.

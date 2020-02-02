@@ -64,7 +64,7 @@ A sample project showcasing some animations which can be made using this framewo
 ## Supported types
 The Numeric Springing framework works by making a type conform to the `Springable` protocol. A `Spring` operates on `Springable` objects. Internally, the Numeric Spring framework does math using `Double`.
 
-This means that custom classes can support the Numeric Springing framework. The only requirements to conform to the `Springable` protocol is that the class must be able to convert from and to 1 or more `Double` values.
+This means that custom classes and structs can support the Numeric Springing framework. The only requirements to conform to the `Springable` protocol is that the class/struct must be able to convert from and to 1 or more `Double` values.
 
 ### Already supported types
 The following types are already supported in the Numeric Springing framework:

@@ -1,7 +1,7 @@
 # Numeric Springing in Swift
 A framework for numeric springing in Swift, written in **Swift 5**, currently supporting **iOS 10 and newer**.
 
-Allows easy creation of spring animations, in cases where e.g. `UIView.animate` isn't a viable option.
+Allows easy creation of spring animations, in cases where e.g. `UIView.animate` isn't a viable option, notably if the target value can change dynamically at any given time (e.g. by user input).
 
 ## Setup
 ### Swift Package Manager

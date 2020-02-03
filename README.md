@@ -75,20 +75,27 @@ The following types are already supported in the Numeric Springing framework:
 * Arrays of supported types are also supported (non-nested).
 
 ### Adding support for new types
-To add support for a new type, make the type conform to the `Springable`protocol. The `Springable` protocol has 2 requirements:
-* `public var values: [Double]` -- Convert an object of the required type into an array of Doubles, for use internally in the Numeric Spring framework.
+To add support for a new type, make the type conform to the `Springable`protocol. The `Springable` protocol has 3 requirements:
+* `public static var numValuesNeededForSpringInitialization: Int { get }` -- How many Doubles are consumed when initializing a single instance of the object. For array purposes.
+
+* `public var values: [Double] { get }` -- Convert an object of the required type into an array of Doubles, for use internally in the Numeric Spring framework.
 
 * `public static func from(values: [Double]) -> T` -- Given an array of Doubles, create an object of the required type.
 
 #### Example, CGFloat
 ```
 extension CGFloat: Springable {
+
+    public var numValuesNeededForSpringInitialization = 1
+    
     public var values: [Double] {
         return [Double(self)]
     }
 
     public static func from(values: [Double]) -> CGFloat {
-        guard values.count == 1 else { fatalError("Attemping to create 1x CGFloat from \(values.count) values.") }
+        guard values.count == numValuesNeededForSpringInitialization else {
+            fatalError("Attemping to create 1x CGFloat from \(values.count) values. Expected \(numValuesNeededForSpringInitialization).")
+        }
         return CGFloat(values[0])
     }
 }

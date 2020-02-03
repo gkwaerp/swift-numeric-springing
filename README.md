@@ -59,7 +59,7 @@ In addition to `createBasicSpring`, there is also factory method called `createC
 
 
 ### Example Repository
-A sample project showcasing some animations which can be made using this framework can be found here: Link goes here.
+A sample project showcasing some animations which can be made using this framework can be found [here](https://github.com/LactoseGK/swift-numeric-springing-examples).
 
 ## Supported types
 The Numeric Springing framework works by making a type conform to the `Springable` protocol. A `Spring` operates on `Springable` objects. Internally, the Numeric Spring framework does math using `Double`.

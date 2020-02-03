@@ -9,12 +9,16 @@
 import UIKit
 
 extension CGFloat: Springable {
+    public var numValuesNeededForSpringInitialization = 1
+    
     public var values: [Double] {
         return [Double(self)]
     }
 
     public static func from(values: [Double]) -> CGFloat {
-        guard values.count == 1 else { fatalError("Attemping to create 1x CGFloat from \(values.count) values.") }
+        guard values.count == numValuesNeededForSpringInitialization else {
+            fatalError("Attemping to create 1x CGFloat from \(values.count) values. Expected \(numValuesNeededForSpringInitialization).")
+        }
         return CGFloat(values[0])
     }
 }

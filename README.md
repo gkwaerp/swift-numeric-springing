@@ -71,6 +71,8 @@ The following types are already supported in the Numeric Springing framework:
 * Double.
 * CGFloat.
 * CGPoint.
+* Int.
+* Arrays of supported types are also supported (non-nested).
 
 ### Adding support for new types
 To add support for a new type, make the type conform to the `Springable`protocol. The `Springable` protocol has 2 requirements:
@@ -91,6 +93,9 @@ extension CGFloat: Springable {
     }
 }
 ```
+
+## Known issues/TODOs
+* Supporting nested arrays.
 
 ## Credits/Acknowledgements
 Based on [Ming-Lun "Allen" Chou](https://github.com/TheAllenChou)'s blog posts on numeric springing:

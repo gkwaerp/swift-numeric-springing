@@ -86,7 +86,9 @@ To add support for a new type, make the type conform to the `Springable`protocol
 ```
 extension CGFloat: Springable {
 
-    public var numValuesNeededForSpringInitialization = 1
+    public static var numValuesNeededForSpringInitialization: Int {
+        return 1
+    }
     
     public var values: [Double] {
         return [Double(self)]

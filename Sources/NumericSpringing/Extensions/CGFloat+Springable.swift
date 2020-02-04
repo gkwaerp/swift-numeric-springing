@@ -9,7 +9,9 @@
 import UIKit
 
 extension CGFloat: Springable {
-    public var numValuesNeededForSpringInitialization = 1
+    public static var numValuesNeededForSpringInitialization: Int {
+        return 1
+    }
     
     public var values: [Double] {
         return [Double(self)]

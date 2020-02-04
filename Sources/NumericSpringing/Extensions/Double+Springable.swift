@@ -8,7 +8,9 @@
 import Foundation
 
 extension Double: Springable {
-    public static var numValuesNeededForSpringInitialization = 1
+    public static var numValuesNeededForSpringInitialization: Int {
+        return 1
+    }
     
     public var values: [Double] {
         return [self]

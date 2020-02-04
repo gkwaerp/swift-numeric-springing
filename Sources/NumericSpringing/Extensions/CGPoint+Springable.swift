@@ -9,7 +9,9 @@
 import UIKit
 
 extension CGPoint: Springable {
-    public static var numValuesNeededForSpringInitialization = 2
+    public static var numValuesNeededForSpringInitialization: Int {
+        return 2
+    }
     
     public var values: [Double] {
         return [Double(self.x), Double(self.y)]

@@ -69,7 +69,6 @@ public class Spring<T: Springable> {
                                    velocity: T? = nil,
                                    oscillationFrequency: Double,
                                    halfLife: Double,
-                                   timeStep: Double = 1.0 / 120.0,
                                    animationClosure: @escaping SpringAnimationBlock,
                                    completion: SpringCompletionBlock? = nil) -> Spring {
         return Spring(startValue: startValue,
@@ -86,7 +85,6 @@ public class Spring<T: Springable> {
                  velocity: T? = nil,
                  oscillationFrequency f: Double,
                  halfLife lambda: Double,
-                 timeStep: Double = 1.0 / 120.0,
                  animationClosure: @escaping SpringAnimationBlock,
                  completion: SpringCompletionBlock?,
                  springType: SpringType = .performance) {
@@ -99,7 +97,6 @@ public class Spring<T: Springable> {
         self.xt = targetValues?.values ?? startValue.values
         self.zeta = dampingRatio
         self.omega = angularFrequency
-//        self.h = timeStep
         self.animationClosure = animationClosure
         self.completionClosure = completion
         self.springType = springType
@@ -111,7 +108,6 @@ public class Spring<T: Springable> {
         self.displayLink?.invalidate()
         self.displayLink = nil
     }
-
 
     // MARK: - Setting new values
     public func updateCurrentValue(_ currentValue: T) {

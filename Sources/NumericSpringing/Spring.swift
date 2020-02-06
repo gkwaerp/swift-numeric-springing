@@ -4,7 +4,9 @@
 //
 //  Created by Geir-Kåre S. Wærp on 01/02/2020.
 //
-import Foundation
+
+#if canImport(UIKit)
+import UIKit
 
 // Based on the blogs posts on Numeric Springing by Ming-Lun "Allen" Chou | 周明倫:
 // * http://allenchou.net/2015/04/game-math-precise-control-over-numeric-springing/
@@ -39,13 +41,12 @@ public class Spring<T: Springable> {
     /// Angular frequency
     private let omega: Double
     
-    /// Time step
-    private let h: Double
+//    /// Time step
+//    private let h: Double
 
     // MARK: Closures & updating
-    // TODO: CADisplayLink instead of Timer?
     private var springType: SpringType
-    private var timer: Timer?
+    private var displayLink: CADisplayLink?
     private var animationClosure: SpringAnimationBlock
     private var completionClosure: SpringCompletionBlock?
 
@@ -98,7 +99,7 @@ public class Spring<T: Springable> {
         self.xt = targetValues?.values ?? startValue.values
         self.zeta = dampingRatio
         self.omega = angularFrequency
-        self.h = timeStep
+//        self.h = timeStep
         self.animationClosure = animationClosure
         self.completionClosure = completion
         self.springType = springType
@@ -107,8 +108,8 @@ public class Spring<T: Springable> {
     }
     
     deinit {
-        self.timer?.invalidate()
-        self.timer = nil
+        self.displayLink?.invalidate()
+        self.displayLink = nil
     }
 
 
@@ -121,7 +122,7 @@ public class Spring<T: Springable> {
     public func updateTargetValue(_ targetValue: T, startIfPaused: Bool = true) {
         guard self.xt.count == targetValue.values.count else { fatalError("Attempting to update target values to a new amount of values. Must be \(self.xt.count), was \(targetValue.values.count)") }
         self.xt = targetValue.values
-        if self.timer == nil && startIfPaused {
+        if self.displayLink == nil && startIfPaused {
             self.startTimer()
         }
     }
@@ -136,25 +137,28 @@ public class Spring<T: Springable> {
     }
     
     private func startTimer() {
-        self.timer?.invalidate()
-        self.timer = Timer.scheduledTimer(withTimeInterval: self.h, repeats: true) { (_) in
-            self.update()
-        }
+        guard self.displayLink == nil else { return }
+        self.displayLink = CADisplayLink(target: self, selector: #selector(self.update))
+        self.displayLink?.add(to: .current, forMode: .default)
+    }
+    
+    public func pause() {
+        self.displayLink?.isPaused = true
     }
 
     public func stop() {
         self.restCounter = 0
-        self.timer?.invalidate()
-        self.timer = nil
+        self.displayLink?.invalidate()
+        self.displayLink = nil
     }
     
     // MARK: - Updating
-    @objc private func update() {
+    @objc private func update(displayLink: CADisplayLink) {
         switch self.springType {
         case .performance:
-            self.updateSemiImplicitEuler()
+            self.updateSemiImplicitEuler(timeStep: displayLink.duration)
         case .stable:
-            self.updateImplicitEuler()
+            self.updateImplicitEuler(timeStep: displayLink.duration)
         }
 
         self.updateRestCounter()
@@ -162,21 +166,21 @@ public class Spring<T: Springable> {
         self.stopIfResting()
     }
 
-    private func updateSemiImplicitEuler() {
+    private func updateSemiImplicitEuler(timeStep: Double) {
         for i in 0..<self.v.count {
-            self.v[i] += -2.0 * self.h * self.zeta * self.omega * self.v[i] + self.h * self.omega * self.omega * (self.xt[i] - self.x[i])
-            self.x[i] += self.h * self.v[i]
+            self.v[i] += -2.0 * timeStep * self.zeta * self.omega * self.v[i] + timeStep * self.omega * self.omega * (self.xt[i] - self.x[i])
+            self.x[i] += timeStep * self.v[i]
         }
     }
 
-    private func updateImplicitEuler() {
-        let f = 1.0 + 2.0 * self.h * self.zeta * self.omega
+    private func updateImplicitEuler(timeStep: Double) {
+        let f = 1.0 + 2.0 * timeStep * self.zeta * self.omega
         let oo = self.omega * self.omega
-        let hoo = self.h * oo
-        let hhoo = self.h * hoo
+        let hoo = timeStep * oo
+        let hhoo = timeStep * hoo
         let detInv = 1.0 / (f + hhoo)
         for i in 0..<self.v.count {
-            let detX = f * self.x[i] + self.h * self.v[i] + hhoo * self.xt[i]
+            let detX = f * self.x[i] + timeStep * self.v[i] + hhoo * self.xt[i]
             let detV = self.v[i] + hoo * (self.xt[i] - self.x[i])
             self.x[i] = detX * detInv
             self.v[i] = detV * detInv
@@ -210,3 +214,4 @@ public class Spring<T: Springable> {
     }
 }
 
+#endif

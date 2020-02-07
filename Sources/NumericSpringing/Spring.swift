@@ -101,8 +101,8 @@ public class Spring<T: Springable> {
         self.completionClosure = completion
         self.springType = springType
         
-        guard oscillationFrequency > 0 else { fatalError("Oscillation frequency must be positive.") }
-        guard halfLife > 0 else { fatalError("Halflife must be positive.") }
+        guard f > 0 else { fatalError("Oscillation frequency must be positive.") }
+        guard lambda > 0 else { fatalError("Halflife must be positive.") }
         
         guard self.x.count == self.xt.count else { fatalError("There must be the same number of values for the starting values and the target values. Number of starting values \(self.x.count) != number of target values \(self.xt.count)") }
     }

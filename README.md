@@ -3,6 +3,8 @@ A framework for numeric springing in Swift, written in **Swift 5**, currently su
 
 Allows easy creation of spring animations, in cases where e.g. `UIView.animate` isn't a viable option, e.g. if the target value can change dynamically at any given time.
 
+A sample project showcasing some animations which can be made using this framework can be found [here](https://github.com/LactoseGK/swift-numeric-springing-examples).
+
 ## Setup
 ### Swift Package Manager
 With your project opened in Xcode, follow these steps to add the Numeric Springing framework to your project:
@@ -56,10 +58,6 @@ Tapping `rotateView` will now cause it to rotate with a spring. Note also that t
 
 
 In addition to `createBasicSpring`, there is also factory method called `createCustomSpring` -- this allows you to tweak the various parameters to get the desired effect.
-
-
-### Example Repository
-A sample project showcasing some animations which can be made using this framework can be found [here](https://github.com/LactoseGK/swift-numeric-springing-examples).
 
 ## Supported types
 The Numeric Springing framework works by making a type conform to the `Springable` protocol. A `Spring` operates on `Springable` objects. Internally, the Numeric Spring framework does math using `Double`.

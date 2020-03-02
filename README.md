@@ -1,4 +1,7 @@
 # Numeric Springing in Swift
+
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_01.gif)
+
 A framework for numeric springing in Swift, written in **Swift 5**, currently supporting **iOS 10 and newer**.
 
 Allows easy creation of spring animations, in cases where e.g. `UIView.animate` isn't a viable option, e.g. if the target value can change dynamically at any given time.
@@ -19,6 +22,8 @@ With your project opened in Xcode, follow these steps to add the Numeric Springi
 9. Click `Finish`.
 
 You will need to include `import NumericSpringing` in the source files which use the Numeric Springing framework.
+
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_03.gif)
 
 ## How to use
 To use a spring, you will generally need to store it in a variable, in order to update its target values.
@@ -58,6 +63,8 @@ Tapping `rotateView` will now cause it to rotate with a spring. Note also that t
 
 
 In addition to `createBasicSpring`, there is also factory method called `createCustomSpring` -- this allows you to tweak the various parameters to get the desired effect.
+
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_05.gif)
 
 ## Supported types
 The Numeric Springing framework works by making a type conform to the `Springable` protocol. A `Spring` operates on `Springable` objects. Internally, the Numeric Spring framework does math using `Double`.
@@ -100,6 +107,8 @@ extension CGFloat: Springable {
     }
 }
 ```
+
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_08.gif)
 
 ## Known issues/TODOs
 * Supporting nested arrays.

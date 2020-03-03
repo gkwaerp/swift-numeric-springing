@@ -1,6 +1,6 @@
 # Numeric Springing in Swift
 
-![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_01.gif)
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/translate_rotate_squash.gif)
 
 A framework for numeric springing in Swift, written in **Swift 5**, currently supporting **iOS 10 and newer**.
 
@@ -23,7 +23,7 @@ With your project opened in Xcode, follow these steps to add the Numeric Springi
 
 You will need to include `import NumericSpringing` in the source files which use the Numeric Springing framework.
 
-![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_03.gif)
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/horizontal_bar.gif)
 
 ## How to use
 To use a spring, you will generally need to store it in a variable, in order to update its target values.
@@ -64,12 +64,14 @@ Tapping `rotateView` will now cause it to rotate with a spring. Note also that t
 
 In addition to `createBasicSpring`, there is also factory method called `createCustomSpring` -- this allows you to tweak the various parameters to get the desired effect.
 
-![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_05.gif)
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/rotation_follow.gif)
 
 ## Supported types
 The Numeric Springing framework works by making a type conform to the `Springable` protocol. A `Spring` operates on `Springable` objects. Internally, the Numeric Spring framework does math using `Double`.
 
 This means that custom classes and structs can support the Numeric Springing framework. The only requirements to conform to the `Springable` protocol is that the class/struct must be able to convert from and to 1 or more `Double` values.
+
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/lottie_animation.gif)
 
 ### Already supported types
 The following types are already supported in the Numeric Springing framework:
@@ -108,7 +110,7 @@ extension CGFloat: Springable {
 }
 ```
 
-![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/example_08.gif)
+![](https://github.com/LactoseGK/swift-numeric-springing-examples/blob/master/scenekit_rotation.gif)
 
 ## Known issues/TODOs
 * Supporting nested arrays.

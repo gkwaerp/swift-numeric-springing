@@ -41,8 +41,13 @@ public class Spring<T: Springable> {
     /// Angular frequency
     private let omega: Double
     
-//    /// Time step
-//    private let h: Double
+    public var currentValue: T {
+        return T.from(values: self.x)
+    }
+    
+    public var currentTarget: T {
+        return T.from(values: self.xt)
+    }
 
     // MARK: Closures & updating
     private var springType: SpringType
@@ -161,7 +166,7 @@ public class Spring<T: Springable> {
         }
 
         self.updateRestCounter()
-        self.animationClosure(T.from(values: self.x))
+        self.animationClosure(self.currentValue)
         self.stopIfResting()
     }
 
@@ -207,7 +212,7 @@ public class Spring<T: Springable> {
     private func stopIfResting() {
         if self.restCounter >= self.numRestsForCompletion {
             self.stop()
-            self.animationClosure(T.from(values: self.xt))
+            self.animationClosure(self.currentTarget)
             self.completionClosure?()
         }
     }
